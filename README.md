@@ -13,7 +13,7 @@ Una aplicación de Generación Aumentada por Recuperación (RAG) construida con 
 
 ## Requisitos Previos
 
-- Python 3.8+
+- **Python 3.11** (requerido, otras versiones pueden causar errores de dependencias)
 - pip (gestor de paquetes de Python)
 - ChromaDB ejecutándose local o remotamente
 - Uno de los proveedores LLM soportados:
@@ -31,10 +31,10 @@ Una aplicación de Generación Aumentada por Recuperación (RAG) construida con 
    cd rag-app/backend
    ```
 
-2. Crear y activar un entorno virtual:
+2. Crear y activar un entorno virtual con Python 3.11:
 
    ```bash
-   python -m venv venv
+   python3.11 -m venv venv
    source venv/bin/activate  # En Windows usar: venv\Scripts\activate
    ```
 
