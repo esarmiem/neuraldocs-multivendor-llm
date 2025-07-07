@@ -146,14 +146,86 @@ Una aplicación de Generación Aumentada por Recuperación (RAG) construida con 
 
 ### Chat
 
-- `POST /api/v1/chat/query` : Consultar el sistema RAG
+- `POST /api/v1/chat/` : Consultar el sistema RAG general
 
   ```bash
-  curl -X POST "http://localhost:8000/api/v1/chat/query" \
+  curl -X POST "http://localhost:8000/api/v1/chat/" \
     -H "Authorization: Bearer tu_token" \
     -H "Content-Type: application/json" \
-    -d '{"query": "¿Qué información puedes encontrar sobre...?"}'
+    -d '{"question": "¿Qué información puedes encontrar sobre...?"}'
   ```
+
+- `POST /api/v1/chat/delia` : Consultar DELIA - Asistente experto en EDSL PowerCurve™
+
+  ```bash
+  curl -X POST "http://localhost:8000/api/v1/chat/delia" \
+    -H "Authorization: Bearer tu_token" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "question": "Revisa este código EDSL: IF x > 10 THEN y = 20",
+      "user_level": "intermediate"
+    }'
+  ```
+
+  **Niveles de usuario disponibles:**
+  - `basic`: Explicaciones detalladas para principiantes
+  - `intermediate`: Explicaciones balanceadas (por defecto)
+  - `advanced`: Respuestas concisas para usuarios avanzados
+
+## DELIA - Asistente Experto en EDSL PowerCurve™
+
+DELIA es un asistente especializado que proporciona ayuda experta en EDSL (Experian Domain Specific Language) dentro del ecosistema PowerCurve™.
+
+### Características Principales
+
+- **✅ Validación de Sintaxis EDSL**: Revisa y corrige código EDSL
+- **✅ Explicaciones Adaptativas**: Se adapta al nivel de conocimiento del usuario
+- **✅ Sugerencias de Mejora**: Proporciona optimizaciones y buenas prácticas
+- **✅ Formateo Automático**: Genera código EDSL correctamente formateado
+- **✅ Referencias a Documentación**: Incluye referencias al EDSL User Guide
+
+### Ejemplos de Uso
+
+**Validación de código:**
+```bash
+curl -X POST "http://localhost:8000/api/v1/chat/delia" \
+  -H "Authorization: Bearer tu_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "¿Hay errores en este código? IF x > 10 THEN y = 20",
+    "user_level": "basic"
+  }'
+```
+
+**Generación de código:**
+```bash
+curl -X POST "http://localhost:8000/api/v1/chat/delia" \
+  -H "Authorization: Bearer tu_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "Genera un script EDSL para validar si un campo es nulo",
+    "user_level": "intermediate"
+  }'
+```
+
+**Optimización:**
+```bash
+curl -X POST "http://localhost:8000/api/v1/chat/delia" \
+  -H "Authorization: Bearer tu_token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "Optimiza este script EDSL: [código complejo]",
+    "user_level": "advanced"
+  }'
+```
+
+### Respuesta de DELIA
+
+Las respuestas incluyen:
+- **Código EDSL corregido** en bloques etiquetados
+- **Resultados de validación** con errores y advertencias
+- **Sugerencias de mejora** y buenas prácticas
+- **Metadata** sobre el nivel de usuario y cantidad de código generado
 
 ## Tipos de Documentos Soportados
 
